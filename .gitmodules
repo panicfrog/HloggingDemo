@@ -1,0 +1,3 @@
+[submodule "hlogging"]
+	path = hlogging
+	url = git@github.com:panicfrog/hlogging.git
