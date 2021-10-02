@@ -15,10 +15,10 @@
 		B8AD68B92706A79700F17F09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8AD68B72706A79700F17F09 /* LaunchScreen.storyboard */; };
 		B8AD68C42706A79700F17F09 /* HloggingDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68C32706A79700F17F09 /* HloggingDemoTests.swift */; };
 		B8AD68CF2706A79700F17F09 /* HloggingDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68CE2706A79700F17F09 /* HloggingDemoUITests.swift */; };
-		B8AD68E32706B01100F17F09 /* hlogging.h in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68E22706B01100F17F09 /* hlogging.h */; };
 		B8AD68EB2706B09000F17F09 /* HLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68EA2706B09000F17F09 /* HLogging.swift */; };
 		B8AD68ED2706B1D200F17F09 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68EC2706B1D200F17F09 /* File.swift */; };
 		B8AD68EE2706DD5800F17F09 /* libhlogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8AD68DE2706AD8A00F17F09 /* libhlogging.a */; };
+		B8AD68F2270847C900F17F09 /* hlogging.h in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68F1270847C900F17F09 /* hlogging.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,10 +54,10 @@
 		B8AD68CE2706A79700F17F09 /* HloggingDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HloggingDemoUITests.swift; sourceTree = "<group>"; };
 		B8AD68D02706A79700F17F09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8AD68DE2706AD8A00F17F09 /* libhlogging.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhlogging.a; path = hlogging/target/universal/debug/libhlogging.a; sourceTree = "<group>"; };
-		B8AD68E22706B01100F17F09 /* hlogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hlogging.h; path = hlogging/target/hlogging.h; sourceTree = "<group>"; };
 		B8AD68E62706B03600F17F09 /* HloggingDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HloggingDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		B8AD68EA2706B09000F17F09 /* HLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLogging.swift; sourceTree = "<group>"; };
 		B8AD68EC2706B1D200F17F09 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		B8AD68F1270847C900F17F09 /* hlogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hlogging.h; path = hlogging/target/include/hlogging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,7 @@
 		B8AD68A02706A79500F17F09 = {
 			isa = PBXGroup;
 			children = (
-				B8AD68E22706B01100F17F09 /* hlogging.h */,
+				B8AD68F1270847C900F17F09 /* hlogging.h */,
 				B8AD68AB2706A79500F17F09 /* HloggingDemo */,
 				B8AD68C22706A79700F17F09 /* HloggingDemoTests */,
 				B8AD68CD2706A79700F17F09 /* HloggingDemoUITests */,
@@ -282,7 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8AD68E32706B01100F17F09 /* hlogging.h in Sources */,
+				B8AD68F2270847C900F17F09 /* hlogging.h in Sources */,
 				B8AD68ED2706B1D200F17F09 /* File.swift in Sources */,
 				B8AD68B12706A79500F17F09 /* ViewController.swift in Sources */,
 				B8AD68AD2706A79500F17F09 /* AppDelegate.swift in Sources */,
