@@ -44,23 +44,23 @@ typedef struct RustCallStatus {
 // ⚠️ increment the version suffix in all instances of UNIFFI_SHARED_HEADER_V3 in this file.           ⚠️
 #endif // def UNIFFI_SHARED_H
 
-void hlogging_ff9_write_file(
+void hlogging_c2a3_write_file(
       RustBuffer filename,RustBuffer message,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_ff9_rustbuffer_alloc(
+RustBuffer ffi_hlogging_c2a3_rustbuffer_alloc(
       int32_t size,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_ff9_rustbuffer_from_bytes(
+RustBuffer ffi_hlogging_c2a3_rustbuffer_from_bytes(
       ForeignBytes bytes,
     RustCallStatus *_Nonnull out_status
     );
-void ffi_hlogging_ff9_rustbuffer_free(
+void ffi_hlogging_c2a3_rustbuffer_free(
       RustBuffer buf,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_ff9_rustbuffer_reserve(
+RustBuffer ffi_hlogging_c2a3_rustbuffer_reserve(
       RustBuffer buf,int32_t additional,
     RustCallStatus *_Nonnull out_status
     );

@@ -14,7 +14,7 @@ private extension RustBuffer {
     // Allocate a new buffer, copying the contents of a `UInt8` array.
     init(bytes: [UInt8]) {
         let rbuf = bytes.withUnsafeBufferPointer { ptr in
-            try! rustCall { ffi_hlogging_ff9_rustbuffer_from_bytes(ForeignBytes(bufferPointer: ptr), $0) }
+            try! rustCall { ffi_hlogging_c2a3_rustbuffer_from_bytes(ForeignBytes(bufferPointer: ptr), $0) }
         }
         self.init(capacity: rbuf.capacity, len: rbuf.len, data: rbuf.data)
     }
@@ -22,7 +22,7 @@ private extension RustBuffer {
     // Frees the buffer in place.
     // The buffer must not be used after this is called.
     func deallocate() {
-        try! rustCall { ffi_hlogging_ff9_rustbuffer_free(self, $0) }
+        try! rustCall { ffi_hlogging_c2a3_rustbuffer_free(self, $0) }
     }
 }
 
@@ -199,12 +199,53 @@ private extension ViaFfiUsingByteBuffer {
 
 // Implement our protocols for the built-in types that we use.
 
+extension Array: ViaFfiUsingByteBuffer, ViaFfi, Serializable where Element: Serializable {
+    fileprivate static func read(from buf: Reader) throws -> Self {
+        let len: Int32 = try buf.readInt()
+        var seq = [Element]()
+        seq.reserveCapacity(Int(len))
+        for _ in 0 ..< len {
+            seq.append(try Element.read(from: buf))
+        }
+        return seq
+    }
+
+    fileprivate func write(into buf: Writer) {
+        let len = Int32(count)
+        buf.writeInt(len)
+        for item in self {
+            item.write(into: buf)
+        }
+    }
+}
+
+extension Dictionary: ViaFfiUsingByteBuffer, ViaFfi, Serializable where Key == String, Value: Serializable {
+    fileprivate static func read(from buf: Reader) throws -> Self {
+        let len: Int32 = try buf.readInt()
+        var dict = [String: Value]()
+        dict.reserveCapacity(Int(len))
+        for _ in 0 ..< len {
+            dict[try String.read(from: buf)] = try Value.read(from: buf)
+        }
+        return dict
+    }
+
+    fileprivate func write(into buf: Writer) {
+        let len = Int32(count)
+        buf.writeInt(len)
+        for (key, value) in self {
+            key.write(into: buf)
+            value.write(into: buf)
+        }
+    }
+}
+
 extension String: ViaFfi {
     fileprivate typealias FfiType = RustBuffer
 
     fileprivate static func lift(_ v: FfiType) throws -> Self {
         defer {
-            try! rustCall { ffi_hlogging_ff9_rustbuffer_free(v, $0) }
+            try! rustCall { ffi_hlogging_c2a3_rustbuffer_free(v, $0) }
         }
         if v.data == nil {
             return String()
@@ -220,7 +261,7 @@ extension String: ViaFfi {
                 // The swift string gives us a trailing null byte, we don't want it.
                 let buf = UnsafeBufferPointer(rebasing: ptr.prefix(upTo: ptr.count - 1))
                 let bytes = ForeignBytes(bufferPointer: buf)
-                return try! rustCall { ffi_hlogging_ff9_rustbuffer_from_bytes(bytes, $0) }
+                return try! rustCall { ffi_hlogging_c2a3_rustbuffer_from_bytes(bytes, $0) }
             }
         }
     }
@@ -239,6 +280,49 @@ extension String: ViaFfi {
 
 // Public interface members begin here.
 
+// Note that we don't yet support `indirect` for enums.
+// See https://github.com/mozilla/uniffi-rs/issues/396 for further discussion.
+public enum Metadata {
+    case string(value: String)
+    case array(value: [Metadata])
+    case map(value: [String: Metadata])
+}
+
+extension Metadata: ViaFfiUsingByteBuffer, ViaFfi {
+    fileprivate static func read(from buf: Reader) throws -> Metadata {
+        let variant: Int32 = try buf.readInt()
+        switch variant {
+        case 1: return .string(
+                value: try String.read(from: buf)
+            )
+        case 2: return .array(
+                value: try [Metadata].read(from: buf)
+            )
+        case 3: return .map(
+                value: try [String: Metadata].read(from: buf)
+            )
+        default: throw UniffiInternalError.unexpectedEnumCase
+        }
+    }
+
+    fileprivate func write(into buf: Writer) {
+        switch self {
+        case let .string(value):
+            buf.writeInt(Int32(1))
+            value.write(into: buf)
+
+        case let .array(value):
+            buf.writeInt(Int32(2))
+            value.write(into: buf)
+
+        case let .map(value):
+            buf.writeInt(Int32(3))
+            value.write(into: buf)
+        }
+    }
+}
+
+extension Metadata: Equatable, Hashable {}
 // An error type for FFI errors. These errors occur at the UniFFI level, not
 // the library level.
 private enum UniffiInternalError: LocalizedError {
@@ -363,6 +447,6 @@ public func writeFile(filename: String, message: String) throws {
     try
 
         rustCallWithError(WriteFileError.self) {
-            hlogging_ff9_write_file(filename.lower(), message.lower(), $0)
+            hlogging_c2a3_write_file(filename.lower(), message.lower(), $0)
         }
 }
