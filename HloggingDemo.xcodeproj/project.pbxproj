@@ -18,7 +18,8 @@
 		B8AD68EB2706B09000F17F09 /* HLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68EA2706B09000F17F09 /* HLogging.swift */; };
 		B8AD68ED2706B1D200F17F09 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68EC2706B1D200F17F09 /* File.swift */; };
 		B8AD68EE2706DD5800F17F09 /* libhlogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8AD68DE2706AD8A00F17F09 /* libhlogging.a */; };
-		B8AD68F2270847C900F17F09 /* hlogging.h in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68F1270847C900F17F09 /* hlogging.h */; };
+		B8CCEA88270999AC007F8AF5 /* hloggingFFI.h in Sources */ = {isa = PBXBuildFile; fileRef = B8CCEA86270999AC007F8AF5 /* hloggingFFI.h */; };
+		B8CCEA89270999AC007F8AF5 /* hlogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCEA87270999AC007F8AF5 /* hlogging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +58,8 @@
 		B8AD68E62706B03600F17F09 /* HloggingDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HloggingDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		B8AD68EA2706B09000F17F09 /* HLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLogging.swift; sourceTree = "<group>"; };
 		B8AD68EC2706B1D200F17F09 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		B8AD68F1270847C900F17F09 /* hlogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hlogging.h; path = hlogging/target/include/hlogging.h; sourceTree = "<group>"; };
+		B8CCEA86270999AC007F8AF5 /* hloggingFFI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hloggingFFI.h; path = Generated/hloggingFFI.h; sourceTree = "<group>"; };
+		B8CCEA87270999AC007F8AF5 /* hlogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = hlogging.swift; path = Generated/hlogging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,13 +91,14 @@
 		B8AD68A02706A79500F17F09 = {
 			isa = PBXGroup;
 			children = (
-				B8AD68F1270847C900F17F09 /* hlogging.h */,
+				B8CCEA87270999AC007F8AF5 /* hlogging.swift */,
+				B8CCEA86270999AC007F8AF5 /* hloggingFFI.h */,
+				B8AD68E62706B03600F17F09 /* HloggingDemo-Bridging-Header.h */,
 				B8AD68AB2706A79500F17F09 /* HloggingDemo */,
 				B8AD68C22706A79700F17F09 /* HloggingDemoTests */,
 				B8AD68CD2706A79700F17F09 /* HloggingDemoUITests */,
 				B8AD68AA2706A79500F17F09 /* Products */,
 				B8AD68DD2706AD8A00F17F09 /* Frameworks */,
-				B8AD68E62706B03600F17F09 /* HloggingDemo-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +161,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8AD68D32706A79700F17F09 /* Build configuration list for PBXNativeTarget "HloggingDemo" */;
 			buildPhases = (
+				B8CCEA8127099053007F8AF5 /* Build hlogging ffi */,
 				B8AD68A52706A79500F17F09 /* Sources */,
 				B8AD68A62706A79500F17F09 /* Frameworks */,
 				B8AD68A72706A79500F17F09 /* Resources */,
@@ -277,12 +281,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B8CCEA8127099053007F8AF5 /* Build hlogging ffi */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build hlogging ffi";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$HOME/.cargo/bin/uniffi-bindgen generate \"$SRCROOT/hlogging/crates/ffi/src/hlogging.udl\" --language swift --out-dir \"$SRCROOT/Generated\"\necho \"Generated files for $INPUT_FILE_BASE in $SRCROOT/Generated\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B8AD68A52706A79500F17F09 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8AD68F2270847C900F17F09 /* hlogging.h in Sources */,
+				B8CCEA88270999AC007F8AF5 /* hloggingFFI.h in Sources */,
+				B8CCEA89270999AC007F8AF5 /* hlogging.swift in Sources */,
 				B8AD68ED2706B1D200F17F09 /* File.swift in Sources */,
 				B8AD68B12706A79500F17F09 /* ViewController.swift in Sources */,
 				B8AD68AD2706A79500F17F09 /* AppDelegate.swift in Sources */,

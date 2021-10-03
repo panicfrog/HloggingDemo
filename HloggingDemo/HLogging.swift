@@ -13,22 +13,21 @@ enum HLoggingError: Error {
     case writeError
 }
 
-enum Hlogging {
-    static func write(message: String, to file: String) -> Result<Void, HLoggingError> {
-        message.withCString { msg  in
-            file.withCString { f -> Result<Void, HLoggingError> in
-                let result = write_log_file( f, msg)
-                if result == 0 {
-                    return .success(())
-                } else if result == 1 {
-                    return .failure(.fileError)
-                } else if result == 2 {
-                    return .failure(.writeError)
-                } else {
-                    return .failure(.comman)
-                }
-            }
-        }
-    }
-}
-
+// enum Hlogging {
+//    static func write(message: String, to file: String) -> Result<Void, HLoggingError> {
+//        message.withCString { msg  in
+//            file.withCString { f -> Result<Void, HLoggingError> in
+//                let result = write_log_file( f, msg)
+//                if result == 0 {
+//                    return .success(())
+//                } else if result == 1 {
+//                    return .failure(.fileError)
+//                } else if result == 2 {
+//                    return .failure(.writeError)
+//                } else {
+//                    return .failure(.comman)
+//                }
+//            }
+//        }
+//    }
+// }
