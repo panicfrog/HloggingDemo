@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80F9EDB271131E900A23962 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80F9EDA271131E900A23962 /* Log.swift */; };
 		B8AD68AD2706A79500F17F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68AC2706A79500F17F09 /* AppDelegate.swift */; };
 		B8AD68AF2706A79500F17F09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68AE2706A79500F17F09 /* SceneDelegate.swift */; };
 		B8AD68B12706A79500F17F09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68B02706A79500F17F09 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B80F9EDA271131E900A23962 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		B8AD68A92706A79500F17F09 /* HloggingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HloggingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8AD68AC2706A79500F17F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8AD68AE2706A79500F17F09 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				B8AD68AC2706A79500F17F09 /* AppDelegate.swift */,
 				B8AD68AE2706A79500F17F09 /* SceneDelegate.swift */,
 				B8AD68B02706A79500F17F09 /* ViewController.swift */,
+				B80F9EDA271131E900A23962 /* Log.swift */,
 				B8AD68EC2706B1D200F17F09 /* File.swift */,
 				B8AD68B22706A79500F17F09 /* Main.storyboard */,
 				B8AD68B52706A79700F17F09 /* Assets.xcassets */,
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8CCEA88270999AC007F8AF5 /* hloggingFFI.h in Sources */,
+				B80F9EDB271131E900A23962 /* Log.swift in Sources */,
 				B8CCEA89270999AC007F8AF5 /* hlogging.swift in Sources */,
 				B8AD68ED2706B1D200F17F09 /* File.swift in Sources */,
 				B8AD68B12706A79500F17F09 /* ViewController.swift in Sources */,

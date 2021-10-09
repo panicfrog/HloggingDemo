@@ -10,8 +10,11 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        debug(metadata: .string(value: "metadata"), message: "hahah", source: nil)
-        debug(metadata: .string(value: "metadata"), message: "hahah3", source: nil)
+        Log.debug(message: "hahah")
+        Log.debug(message: "hahah3", metadata: .map(value: ["token" : .string(value: "saf232adkfad0jfksajckjaldfas01")]))
+        Log.debug(message: "发那科放假啊圣诞快乐", metadata: .string(value: ""),  source: "ViewController")
+        Log.info(message: "九分裤大酸辣粉经典款")
+        Log.notice(message: "notice daklfjdaskl ", source: "ViewController")
 //        write(log: "123456789 \n")
 //        write(log: "abcdefghigklmnopqrst \n")
 //        write(log: "uniffi \n")
