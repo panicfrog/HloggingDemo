@@ -44,51 +44,51 @@ typedef struct RustCallStatus {
 // ⚠️ increment the version suffix in all instances of UNIFFI_SHARED_HEADER_V3 in this file.           ⚠️
 #endif // def UNIFFI_SHARED_H
 
-void hlogging_e17d_write_file(
+void hlogging_df33_write_file(
       RustBuffer filename,RustBuffer message,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_e17d_configure(
+void hlogging_df33_configure(
       RustBuffer label,RustBuffer level,RustBuffer logger_type,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_e17d_debug(
+void hlogging_df33_debug(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_e17d_info(
+void hlogging_df33_info(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_e17d_notice(
+void hlogging_df33_notice(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_e17d_warring(
+void hlogging_df33_warring(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_e17d_error(
+void hlogging_df33_error(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_e17d_critical(
+void hlogging_df33_critical(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_e17d_rustbuffer_alloc(
+RustBuffer ffi_hlogging_df33_rustbuffer_alloc(
       int32_t size,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_e17d_rustbuffer_from_bytes(
+RustBuffer ffi_hlogging_df33_rustbuffer_from_bytes(
       ForeignBytes bytes,
     RustCallStatus *_Nonnull out_status
     );
-void ffi_hlogging_e17d_rustbuffer_free(
+void ffi_hlogging_df33_rustbuffer_free(
       RustBuffer buf,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_e17d_rustbuffer_reserve(
+RustBuffer ffi_hlogging_df33_rustbuffer_reserve(
       RustBuffer buf,int32_t additional,
     RustCallStatus *_Nonnull out_status
     );

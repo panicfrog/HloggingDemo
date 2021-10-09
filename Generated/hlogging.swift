@@ -14,7 +14,7 @@ private extension RustBuffer {
     // Allocate a new buffer, copying the contents of a `UInt8` array.
     init(bytes: [UInt8]) {
         let rbuf = bytes.withUnsafeBufferPointer { ptr in
-            try! rustCall { ffi_hlogging_e17d_rustbuffer_from_bytes(ForeignBytes(bufferPointer: ptr), $0) }
+            try! rustCall { ffi_hlogging_df33_rustbuffer_from_bytes(ForeignBytes(bufferPointer: ptr), $0) }
         }
         self.init(capacity: rbuf.capacity, len: rbuf.len, data: rbuf.data)
     }
@@ -22,7 +22,7 @@ private extension RustBuffer {
     // Frees the buffer in place.
     // The buffer must not be used after this is called.
     func deallocate() {
-        try! rustCall { ffi_hlogging_e17d_rustbuffer_free(self, $0) }
+        try! rustCall { ffi_hlogging_df33_rustbuffer_free(self, $0) }
     }
 }
 
@@ -264,7 +264,7 @@ extension String: ViaFfi {
 
     fileprivate static func lift(_ v: FfiType) throws -> Self {
         defer {
-            try! rustCall { ffi_hlogging_e17d_rustbuffer_free(v, $0) }
+            try! rustCall { ffi_hlogging_df33_rustbuffer_free(v, $0) }
         }
         if v.data == nil {
             return String()
@@ -280,7 +280,7 @@ extension String: ViaFfi {
                 // The swift string gives us a trailing null byte, we don't want it.
                 let buf = UnsafeBufferPointer(rebasing: ptr.prefix(upTo: ptr.count - 1))
                 let bytes = ForeignBytes(bufferPointer: buf)
-                return try! rustCall { ffi_hlogging_e17d_rustbuffer_from_bytes(bytes, $0) }
+                return try! rustCall { ffi_hlogging_df33_rustbuffer_from_bytes(bytes, $0) }
             }
         }
     }
@@ -397,6 +397,7 @@ extension LoggingLevel: Equatable, Hashable {}
 // See https://github.com/mozilla/uniffi-rs/issues/396 for further discussion.
 public enum HLoggingType {
     case stdStream
+    case fileLogger(directory: String)
 }
 
 extension HLoggingType: ViaFfiUsingByteBuffer, ViaFfi {
@@ -404,6 +405,9 @@ extension HLoggingType: ViaFfiUsingByteBuffer, ViaFfi {
         let variant: Int32 = try buf.readInt()
         switch variant {
         case 1: return .stdStream
+        case 2: return .fileLogger(
+                directory: try String.read(from: buf)
+            )
         default: throw UniffiInternalError.unexpectedEnumCase
         }
     }
@@ -412,6 +416,10 @@ extension HLoggingType: ViaFfiUsingByteBuffer, ViaFfi {
         switch self {
         case .stdStream:
             buf.writeInt(Int32(1))
+
+        case let .fileLogger(directory):
+            buf.writeInt(Int32(2))
+            directory.write(into: buf)
         }
     }
 }
@@ -541,7 +549,7 @@ public func writeFile(filename: String, message: String) throws {
     try
 
         rustCallWithError(WriteFileError.self) {
-            hlogging_e17d_write_file(filename.lower(), message.lower(), $0)
+            hlogging_df33_write_file(filename.lower(), message.lower(), $0)
         }
 }
 
@@ -549,7 +557,7 @@ public func configure(label: String, level: LoggingLevel, loggerType: HLoggingTy
     try!
 
         rustCall {
-            hlogging_e17d_configure(label.lower(), level.lower(), loggerType.lower(), $0)
+            hlogging_df33_configure(label.lower(), level.lower(), loggerType.lower(), $0)
         }
 }
 
@@ -557,7 +565,7 @@ public func debug(metadata: Metadata, message: String, source: String?) {
     try!
 
         rustCall {
-            hlogging_e17d_debug(metadata.lower(), message.lower(), source.lower(), $0)
+            hlogging_df33_debug(metadata.lower(), message.lower(), source.lower(), $0)
         }
 }
 
@@ -565,7 +573,7 @@ public func info(metadata: Metadata, message: String, source: String?) {
     try!
 
         rustCall {
-            hlogging_e17d_info(metadata.lower(), message.lower(), source.lower(), $0)
+            hlogging_df33_info(metadata.lower(), message.lower(), source.lower(), $0)
         }
 }
 
@@ -573,7 +581,7 @@ public func notice(metadata: Metadata, message: String, source: String?) {
     try!
 
         rustCall {
-            hlogging_e17d_notice(metadata.lower(), message.lower(), source.lower(), $0)
+            hlogging_df33_notice(metadata.lower(), message.lower(), source.lower(), $0)
         }
 }
 
@@ -581,7 +589,7 @@ public func warring(metadata: Metadata, message: String, source: String?) {
     try!
 
         rustCall {
-            hlogging_e17d_warring(metadata.lower(), message.lower(), source.lower(), $0)
+            hlogging_df33_warring(metadata.lower(), message.lower(), source.lower(), $0)
         }
 }
 
@@ -589,7 +597,7 @@ public func error(metadata: Metadata, message: String, source: String?) {
     try!
 
         rustCall {
-            hlogging_e17d_error(metadata.lower(), message.lower(), source.lower(), $0)
+            hlogging_df33_error(metadata.lower(), message.lower(), source.lower(), $0)
         }
 }
 
@@ -597,6 +605,6 @@ public func critical(metadata: Metadata, message: String, source: String?) {
     try!
 
         rustCall {
-            hlogging_e17d_critical(metadata.lower(), message.lower(), source.lower(), $0)
+            hlogging_df33_critical(metadata.lower(), message.lower(), source.lower(), $0)
         }
 }

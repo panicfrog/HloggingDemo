@@ -11,7 +11,9 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        configure(label: "mylogger", level: .debug, loggerType: .stdStream)
+        let dir = getDocumentsDirectoryPath() + "/log"
+        print(dir)
+        configure(label: "mylogger", level: .debug, loggerType: .fileLogger(directory:  dir))
         return true
     }
 
