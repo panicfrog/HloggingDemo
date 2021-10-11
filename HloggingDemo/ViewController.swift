@@ -8,36 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var stdoutSwiftLabel: UILabel!
+    @IBOutlet weak var stdoutRustLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let start = Date()
-        for i in 0..<145000 {
-            Log.debug(message: "hahah\(i)")
-        }
-//        let end = Date()
-//        for i in 0..<145000 {
-//            let data = Date()
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//            dateFormatter.timeZone = TimeZone.current
-//            let dateString = dateFormatter.string(from: data)
-//            let label = "mylogger"
-//            let level = "DEBUG"
-//            print("\(dateString) \(level) \(label):  hahah\(i)")
-//        }
-//        let end2 = Date()
-//
-//        let duration = end.timeIntervalSince(start)
-//        let duration2 = end2.timeIntervalSince(end)
-//        print("duratin1: \(duration), duration2: \(duration2)")
-//        Log.debug(message: "hahah")
-//        Log.debug(message: "hahah3", metadata: .array(value: [.string(value: "string"), .map(value: ["key": .string(value: "value")])]))
-//        Log.debug(message: "发那科放假啊圣诞快乐", metadata: .string(value: ""),  source: "ViewController")
-//        Log.info(message: "九分裤大酸辣粉经典款")
-//        Log.notice(message: "notice daklfjdaskl ", source: "ViewController")
-//        write(log: "123456789 \n")
-//        write(log: "abcdefghigklmnopqrst \n")
-//        write(log: "uniffi \n")
     }
 
     func write(log: String) {
@@ -49,4 +25,68 @@ class ViewController: UIViewController {
             print(error)
         }
     }
+    
+    @IBAction func swift(_ sender: Any) {
+        let start = Date()
+        var f = URL(string: getDocumentsDirectoryPath())!
+        var outputStream: OutputStream? = nil
+        if case let .fileLogger(directory) = type {
+            let fm = FileManager.default
+            let data = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyMMdd"
+            let dateString = dateFormatter.string(from: data)
+            if !fm.fileExists(atPath: directory) {
+                try! FileManager.default.createDirectory(at: URL(string: directory)!, withIntermediateDirectories: true, attributes: nil)
+            }
+            f = URL(string: "file://\(directory)/\(dateString)")!
+            outputStream = OutputStream(url: f, append: true)
+        }
+        for i in 0..<100000 {
+            let data = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            dateFormatter.timeZone = TimeZone.current
+            let dateString = dateFormatter.string(from: data)
+            let label = "mylogger"
+            let level = "DEBUG"
+            let l = "\(dateString) \(level) \(label):  hahah\(i) "
+            switch type {
+            case .stdStream:
+                print(l)
+                break
+            case .fileLogger(_):
+                if let outputStream = outputStream {
+                    if i == 0 {
+                        outputStream.open()
+                    }
+                    let bytesWritten = outputStream.write(l, maxLength: l.count)
+                    if bytesWritten < 0 { print("write failure") }
+                    if i == 100000 - 1 {
+                        outputStream.close()
+                    }
+                } else {
+                    print("Unable to open file")
+                }
+                break
+            case .none:
+                break
+            }
+            
+        }
+        let end = Date()
+        let duration = end.timeIntervalSince(start)
+        stdoutSwiftLabel.text = "swift: \(duration) s"
+    }
+    
+    @IBAction func rust(_ sender: Any) {
+        let start = Date()
+        for i in 0..<100000 {
+            Log.debug(message: "hahah\(i)")
+        }
+        let end = Date()
+        let duration = end.timeIntervalSince(start)
+        stdoutRustLabel.text = "rust: \(duration) s"
+    }
+    
 }

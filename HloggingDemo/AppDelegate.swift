@@ -7,13 +7,17 @@
 
 import UIKit
 
+var type: HLoggingType? = nil
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let dir = getDocumentsDirectoryPath() + "/async_rut_io"
-        print(dir)
-        configure(label: "mylogger", level: .debug, loggerType: .fileLogger(directory:  dir))
+        let dir = getDocumentsDirectoryPath() + "/async_rut_io2"
+        print("dir: \(dir)")
+//        type = .fileLogger(directory:  dir)
+        type = .stdStream
+        configure(label: "mylogger", level: .debug, loggerType: type!)
         return true
     }
 
