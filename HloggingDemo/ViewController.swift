@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 
     func write(log: String) {
         let path = getDocumentsDirectoryPath()
-        let logPath = path + "/rustio.log"
+        let logPath = path + "/async_rust_io.log"
         do {
             try writeFile(filename: logPath, message: log)
         } catch {

@@ -11,7 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let dir = getDocumentsDirectoryPath() + "/log"
+        let dir = getDocumentsDirectoryPath() + "/async_rut_io"
         print(dir)
         configure(label: "mylogger", level: .debug, loggerType: .fileLogger(directory:  dir))
         return true
