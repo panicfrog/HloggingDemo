@@ -39,7 +39,7 @@ class ViewController: UIViewController {
             if !fm.fileExists(atPath: directory) {
                 try! FileManager.default.createDirectory(at: URL(string: directory)!, withIntermediateDirectories: true, attributes: nil)
             }
-            f = URL(string: "file://\(directory)/\(dateString)")!
+            f = URL(string: "file://\(directory)/\(dateString).log")!
             outputStream = OutputStream(url: f, append: true)
         }
         for i in 0..<100000 {

@@ -13,10 +13,10 @@ var type: HLoggingType? = nil
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let dir = getDocumentsDirectoryPath() + "/async_rut_io2"
+        let dir = getDocumentsDirectoryPath() + "/async_rut_io3"
         print("dir: \(dir)")
-//        type = .fileLogger(directory:  dir)
-        type = .stdStream
+        type = .fileLogger(directory:  dir)
+//        type = .stdStream
         configure(label: "mylogger", level: .debug, loggerType: type!)
         return true
     }
