@@ -30,7 +30,14 @@ class ViewController: UIViewController {
         let start = Date()
         var f = URL(string: getDocumentsDirectoryPath())!
         var outputStream: OutputStream? = nil
-        if case let .fileLogger(directory) = type {
+        var directory: String? = .none
+        if case let .fileLogger(dir) = type {
+            directory = dir
+        }
+        if case let .mmapLogger(dir) = type {
+            directory = dir
+        }
+        if let directory = directory {
             let fm = FileManager.default
             let data = Date()
             let dateFormatter = DateFormatter()

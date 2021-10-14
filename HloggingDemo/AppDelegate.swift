@@ -13,7 +13,7 @@ var type: HLoggingType? = nil
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let dir = getDocumentsDirectoryPath() + "/async_rust_mmap3"
+        let dir = getDocumentsDirectoryPath() + "/async_rust_3"
         print("dir: \(dir)")
         type = .mmapLogger(directory:  dir)
 //        type = .stdStream
