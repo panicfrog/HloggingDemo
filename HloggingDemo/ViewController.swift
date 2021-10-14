@@ -55,7 +55,7 @@ class ViewController: UIViewController {
             case .stdStream:
                 print(l)
                 break
-            case .fileLogger(_):
+            case .fileLogger(_), .mmapLogger(_):
                 if let outputStream = outputStream {
                     if i == 0 {
                         outputStream.open()
