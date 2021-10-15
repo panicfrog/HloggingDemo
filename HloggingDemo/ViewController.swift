@@ -89,7 +89,7 @@ class ViewController: UIViewController {
     @IBAction func rust(_ sender: Any) {
         let start = Date()
         for i in 0..<100000 {
-            Log.debug(message: "hahah\(i)")
+            HloggingDemo.debug(metadata: .string(value: ""), message: "hahah\(i)", source: nil)
         }
         let end = Date()
         let duration = end.timeIntervalSince(start)

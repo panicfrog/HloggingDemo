@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let dir = getDocumentsDirectoryPath() + "/async_rust_3"
         print("dir: \(dir)")
-        type = .mmapLogger(directory:  dir)
+        type = .fileLogger(directory:  dir)
 //        type = .stdStream
         configure(label: "mylogger", level: .debug, loggerType: type!)
         return true
