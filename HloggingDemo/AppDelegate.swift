@@ -13,7 +13,7 @@ var type: HLoggingType? = nil
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let dir = getDocumentsDirectoryPath() + "/async_rust_3"
+        let dir = getDocumentsDirectoryPath() + "/async_rust_6"
         print("dir: \(dir)")
         type = .fileLogger(directory:  dir)
 //        type = .stdStream

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32E33097CE6753D72DF7C948 /* Pods_HloggingDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A54360BB4B74B1E01F4194 /* Pods_HloggingDemoTests.framework */; };
+		7C515C0656200F01691C4155 /* Pods_HloggingDemo_HloggingDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC37A51D36D838A56A9261FF /* Pods_HloggingDemo_HloggingDemoUITests.framework */; };
+		9621215C3D69B51061B8D54D /* Pods_HloggingDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBF60001B6B148FA9066D47 /* Pods_HloggingDemo.framework */; };
 		B80F9EDB271131E900A23962 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80F9EDA271131E900A23962 /* Log.swift */; };
 		B8AD68AD2706A79500F17F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68AC2706A79500F17F09 /* AppDelegate.swift */; };
 		B8AD68AF2706A79500F17F09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AD68AE2706A79500F17F09 /* SceneDelegate.swift */; };
@@ -40,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06B306A1722E97BC336D6E38 /* Pods-HloggingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HloggingDemo.release.xcconfig"; path = "Target Support Files/Pods-HloggingDemo/Pods-HloggingDemo.release.xcconfig"; sourceTree = "<group>"; };
+		28A54360BB4B74B1E01F4194 /* Pods_HloggingDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HloggingDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CBF60001B6B148FA9066D47 /* Pods_HloggingDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HloggingDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		664E7AD03455ADCA53E51311 /* Pods-HloggingDemo-HloggingDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HloggingDemo-HloggingDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-HloggingDemo-HloggingDemoUITests/Pods-HloggingDemo-HloggingDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A1E73E4D032566214A5F61DB /* Pods-HloggingDemo-HloggingDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HloggingDemo-HloggingDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-HloggingDemo-HloggingDemoUITests/Pods-HloggingDemo-HloggingDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B2995935BF225A6A02695EC7 /* Pods-HloggingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HloggingDemo.debug.xcconfig"; path = "Target Support Files/Pods-HloggingDemo/Pods-HloggingDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B80F9EDA271131E900A23962 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		B8AD68A92706A79500F17F09 /* HloggingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HloggingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8AD68AC2706A79500F17F09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +69,9 @@
 		B8AD68EC2706B1D200F17F09 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		B8CCEA86270999AC007F8AF5 /* hloggingFFI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hloggingFFI.h; path = Generated/hloggingFFI.h; sourceTree = "<group>"; };
 		B8CCEA87270999AC007F8AF5 /* hlogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = hlogging.swift; path = Generated/hlogging.swift; sourceTree = "<group>"; };
+		BC37A51D36D838A56A9261FF /* Pods_HloggingDemo_HloggingDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HloggingDemo_HloggingDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD7209989F74DEAD4BBE8E25 /* Pods-HloggingDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HloggingDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-HloggingDemoTests/Pods-HloggingDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EB518DFF04493650782A76A0 /* Pods-HloggingDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HloggingDemoTests.release.xcconfig"; path = "Target Support Files/Pods-HloggingDemoTests/Pods-HloggingDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8AD68EE2706DD5800F17F09 /* libhlogging.a in Frameworks */,
+				9621215C3D69B51061B8D54D /* Pods_HloggingDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32E33097CE6753D72DF7C948 /* Pods_HloggingDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +96,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C515C0656200F01691C4155 /* Pods_HloggingDemo_HloggingDemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E3A7F9D585004DAAEB03B0D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B2995935BF225A6A02695EC7 /* Pods-HloggingDemo.debug.xcconfig */,
+				06B306A1722E97BC336D6E38 /* Pods-HloggingDemo.release.xcconfig */,
+				A1E73E4D032566214A5F61DB /* Pods-HloggingDemo-HloggingDemoUITests.debug.xcconfig */,
+				664E7AD03455ADCA53E51311 /* Pods-HloggingDemo-HloggingDemoUITests.release.xcconfig */,
+				CD7209989F74DEAD4BBE8E25 /* Pods-HloggingDemoTests.debug.xcconfig */,
+				EB518DFF04493650782A76A0 /* Pods-HloggingDemoTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B8AD68A02706A79500F17F09 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +128,7 @@
 				B8AD68CD2706A79700F17F09 /* HloggingDemoUITests */,
 				B8AD68AA2706A79500F17F09 /* Products */,
 				B8AD68DD2706AD8A00F17F09 /* Frameworks */,
+				1E3A7F9D585004DAAEB03B0D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +180,9 @@
 			isa = PBXGroup;
 			children = (
 				B8AD68DE2706AD8A00F17F09 /* libhlogging.a */,
+				5CBF60001B6B148FA9066D47 /* Pods_HloggingDemo.framework */,
+				BC37A51D36D838A56A9261FF /* Pods_HloggingDemo_HloggingDemoUITests.framework */,
+				28A54360BB4B74B1E01F4194 /* Pods_HloggingDemoTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -161,10 +194,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8AD68D32706A79700F17F09 /* Build configuration list for PBXNativeTarget "HloggingDemo" */;
 			buildPhases = (
+				95EE0D1B26D50F6F8D119E58 /* [CP] Check Pods Manifest.lock */,
 				B8CCEA8127099053007F8AF5 /* Build hlogging ffi */,
 				B8AD68A52706A79500F17F09 /* Sources */,
 				B8AD68A62706A79500F17F09 /* Frameworks */,
 				B8AD68A72706A79500F17F09 /* Resources */,
+				EE1F87B7EE3013C3FE04A60A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,6 +214,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8AD68D62706A79700F17F09 /* Build configuration list for PBXNativeTarget "HloggingDemoTests" */;
 			buildPhases = (
+				43EADD756385DB83171FAC63 /* [CP] Check Pods Manifest.lock */,
 				B8AD68BB2706A79700F17F09 /* Sources */,
 				B8AD68BC2706A79700F17F09 /* Frameworks */,
 				B8AD68BD2706A79700F17F09 /* Resources */,
@@ -197,9 +233,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8AD68D92706A79700F17F09 /* Build configuration list for PBXNativeTarget "HloggingDemoUITests" */;
 			buildPhases = (
+				F6714A2FFE1794DCF3C67115 /* [CP] Check Pods Manifest.lock */,
 				B8AD68C62706A79700F17F09 /* Sources */,
 				B8AD68C72706A79700F17F09 /* Frameworks */,
 				B8AD68C82706A79700F17F09 /* Resources */,
+				43C0F59915A65724BB05BB89 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -282,6 +320,67 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		43C0F59915A65724BB05BB89 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HloggingDemo-HloggingDemoUITests/Pods-HloggingDemo-HloggingDemoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HloggingDemo-HloggingDemoUITests/Pods-HloggingDemo-HloggingDemoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HloggingDemo-HloggingDemoUITests/Pods-HloggingDemo-HloggingDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EADD756385DB83171FAC63 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HloggingDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95EE0D1B26D50F6F8D119E58 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HloggingDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B8CCEA8127099053007F8AF5 /* Build hlogging ffi */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,6 +398,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$HOME/.cargo/bin/uniffi-bindgen generate \"$SRCROOT/hlogging/crates/ffi/src/hlogging.udl\" --language swift --out-dir \"$SRCROOT/Generated\"\necho \"Generated files for $INPUT_FILE_BASE in $SRCROOT/Generated\"\n";
+		};
+		EE1F87B7EE3013C3FE04A60A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HloggingDemo/Pods-HloggingDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HloggingDemo/Pods-HloggingDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HloggingDemo/Pods-HloggingDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6714A2FFE1794DCF3C67115 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HloggingDemo-HloggingDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -486,6 +624,7 @@
 		};
 		B8AD68D42706A79700F17F09 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2995935BF225A6A02695EC7 /* Pods-HloggingDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -514,6 +653,7 @@
 		};
 		B8AD68D52706A79700F17F09 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06B306A1722E97BC336D6E38 /* Pods-HloggingDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -540,6 +680,7 @@
 		};
 		B8AD68D72706A79700F17F09 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD7209989F74DEAD4BBE8E25 /* Pods-HloggingDemoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -562,6 +703,7 @@
 		};
 		B8AD68D82706A79700F17F09 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB518DFF04493650782A76A0 /* Pods-HloggingDemoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -584,6 +726,7 @@
 		};
 		B8AD68DA2706A79700F17F09 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1E73E4D032566214A5F61DB /* Pods-HloggingDemo-HloggingDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -604,6 +747,7 @@
 		};
 		B8AD68DB2706A79700F17F09 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 664E7AD03455ADCA53E51311 /* Pods-HloggingDemo-HloggingDemoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
