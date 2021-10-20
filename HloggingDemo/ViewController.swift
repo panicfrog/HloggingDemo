@@ -35,7 +35,64 @@ class ViewController: UIViewController {
     }
     
     @IBAction func swift(_ sender: Any) {
-        writeLog(with: .filehandle, formatter: .ISO8601)
+        weiteLogPerformace()
+    }
+    
+    private func weiteLogPerformace() {
+        var filehandle: FileHandle?
+        var directory: String? = .none
+        let start = Date()
+        if case let .fileLogger(dir) = type {
+            directory = dir
+            
+        }
+        if case let .mmapLogger(dir) = type {
+            directory = dir
+        }
+        if let directory = directory {
+            let fm = FileManager.default
+            if !fm.fileExists(atPath: directory) {
+                try! FileManager.default.createDirectory(at: URL(string: directory)!, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            var charArray:[CChar] = getCurrentLogPath(from: directory).cString(using: .utf8)!
+            let fd = withUnsafePointer(to: &charArray[0], { p -> Int32 in
+                // 0644
+                open(p, O_WRONLY|O_APPEND|O_CREAT, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH)
+            })
+            if fd == -1 {
+                fatalError("\(#file) \(#function) \(#line) open file error")
+            }
+            filehandle = FileHandle(fileDescriptor: fd, closeOnDealloc: true)
+        }
+        let count = 100000
+        for i in 0..<count {
+            let date = Date()
+            let _dateFormatter = JJLISO8601DateFormatter()
+            _dateFormatter.formatOptions = [_dateFormatter.formatOptions, .withFractionalSeconds]
+            _dateFormatter.timeZone = TimeZone.current
+            let dateString = _dateFormatter.string(from: date)
+            let label = "mylogger"
+            let level = "DEBUG"
+            switch type {
+            case .stdStream:
+                let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)"
+                print(l)
+                break
+            case .fileLogger(_), .mmapLogger(_):
+                let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)\n"
+                filehandle!.write(l.data(using: .utf8)!)
+                if i == count - 1 {
+                    try! filehandle?.synchronize()
+                }
+                break
+            case .none:
+                break
+            }
+        }
+        let end = Date()
+        let duration = end.timeIntervalSince(start)
+        stdoutSwiftLabel.text = "swift: \(duration) s"
     }
     
     private func writeLog(with writer: Writer, formatter: Formatter) {
@@ -77,9 +134,6 @@ class ViewController: UIViewController {
             if case .outputStream  = writer {
                 outputStream = OutputStream(url: getCurrentLogURL(form: directory), append: true)
             }
-            
-            
-            
         }
         let count = 100000
         for i in 0..<count {
@@ -89,11 +143,11 @@ class ViewController: UIViewController {
             let level = "DEBUG"
             switch type {
             case .stdStream:
-                let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)"
+                let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。"
                 print(l)
                 break
             case .fileLogger(_), .mmapLogger(_):
-                let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)\n"
+                let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\n"
                 
                 if case .filehandle =  writer, let filehandle = filehandle {
                     try! filehandle.seekToEnd()
@@ -156,8 +210,8 @@ class ViewController: UIViewController {
     
     @IBAction func rust(_ sender: Any) {
         let start = Date()
-        for i in 0..<100000 {
-            HloggingDemo.debug(metadata: .string(value: ""), message: "人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)", source: nil)
+        for _ in 0..<100000 {
+            HloggingDemo.debug(metadata: .string(value: ""), message: "人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。", source: nil)
         }
         let end = Date()
         let duration = end.timeIntervalSince(start)
