@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		32E33097CE6753D72DF7C948 /* Pods_HloggingDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A54360BB4B74B1E01F4194 /* Pods_HloggingDemoTests.framework */; };
+		6D3E6F2D2721C9FE00DFE542 /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = 6D3E6F2C2721C9FE00DFE542 /* Atomics */; };
 		7C515C0656200F01691C4155 /* Pods_HloggingDemo_HloggingDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC37A51D36D838A56A9261FF /* Pods_HloggingDemo_HloggingDemoUITests.framework */; };
 		9621215C3D69B51061B8D54D /* Pods_HloggingDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBF60001B6B148FA9066D47 /* Pods_HloggingDemo.framework */; };
 		B80F9EDB271131E900A23962 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80F9EDA271131E900A23962 /* Log.swift */; };
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D3E6F2D2721C9FE00DFE542 /* Atomics in Frameworks */,
 				B8AD68EE2706DD5800F17F09 /* libhlogging.a in Frameworks */,
 				9621215C3D69B51061B8D54D /* Pods_HloggingDemo.framework in Frameworks */,
 			);
@@ -113,7 +115,6 @@
 				CD7209989F74DEAD4BBE8E25 /* Pods-HloggingDemoTests.debug.xcconfig */,
 				EB518DFF04493650782A76A0 /* Pods-HloggingDemoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -206,6 +207,9 @@
 			dependencies = (
 			);
 			name = HloggingDemo;
+			packageProductDependencies = (
+				6D3E6F2C2721C9FE00DFE542 /* Atomics */,
+			);
 			productName = HloggingDemo;
 			productReference = B8AD68A92706A79500F17F09 /* HloggingDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -281,6 +285,9 @@
 				Base,
 			);
 			mainGroup = B8AD68A02706A79500F17F09;
+			packageReferences = (
+				6D3E6F2B2721C9FE00DFE542 /* XCRemoteSwiftPackageReference "swift-atomics" */,
+			);
 			productRefGroup = B8AD68AA2706A79500F17F09 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -806,6 +813,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6D3E6F2B2721C9FE00DFE542 /* XCRemoteSwiftPackageReference "swift-atomics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-atomics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6D3E6F2C2721C9FE00DFE542 /* Atomics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D3E6F2B2721C9FE00DFE542 /* XCRemoteSwiftPackageReference "swift-atomics" */;
+			productName = Atomics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B8AD68A12706A79500F17F09 /* Project object */;
 }

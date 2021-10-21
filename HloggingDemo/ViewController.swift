@@ -7,6 +7,7 @@
 
 import UIKit
 import JJLISO8601DateFormatter
+import Atomics
 
 class ViewController: UIViewController {
     
@@ -65,31 +66,36 @@ class ViewController: UIViewController {
             }
             filehandle = FileHandle(fileDescriptor: fd, closeOnDealloc: true)
         }
-        let count = 100000
-        for i in 0..<count {
-            let date = Date()
-            let _dateFormatter = JJLISO8601DateFormatter()
-            _dateFormatter.formatOptions = [_dateFormatter.formatOptions, .withFractionalSeconds]
-            _dateFormatter.timeZone = TimeZone.current
-            let dateString = _dateFormatter.string(from: date)
-            let label = "mylogger"
-            let level = "DEBUG"
-            switch type {
-            case .stdStream:
-                let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)"
-                print(l)
-                break
-            case .fileLogger(_), .mmapLogger(_):
-                let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)\n"
-                filehandle!.write(l.data(using: .utf8)!)
-                if i == count - 1 {
-                    try! filehandle?.synchronize()
+        let counter = ManagedAtomic<Int>(0)
+        DispatchQueue.concurrentPerform(iterations: 10) { _ in
+            for i in 0..<10000 {
+                let date = Date()
+                let _dateFormatter = JJLISO8601DateFormatter()
+                _dateFormatter.formatOptions = [_dateFormatter.formatOptions, .withFractionalSeconds]
+                _dateFormatter.timeZone = TimeZone.current
+                let dateString = _dateFormatter.string(from: date)
+                let label = "mylogger"
+                let level = "DEBUG"
+                switch type {
+                case .stdStream:
+                    let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)"
+                    print(l)
+                    break
+                case .fileLogger(_), .mmapLogger(_):
+                    let l = "\(dateString) \(level) \(label): 人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。\(i)\n"
+                    filehandle!.write(l.data(using: .utf8)!)
+                    break
+                case .none:
+                    break
                 }
-                break
-            case .none:
-                break
+                counter.wrappingIncrement(ordering: .relaxed)
             }
         }
+        if let filehandle = filehandle {
+            try! filehandle.synchronize()
+        }
+        let num = counter.load(ordering: .relaxed)
+        print("swift: \(num) logs total")
         let end = Date()
         let duration = end.timeIntervalSince(start)
         stdoutSwiftLabel.text = "swift: \(duration) s"
@@ -210,9 +216,15 @@ class ViewController: UIViewController {
     
     @IBAction func rust(_ sender: Any) {
         let start = Date()
-        for _ in 0..<100000 {
-            HloggingDemo.debug(metadata: .string(value: ""), message: "人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。", source: nil)
+        let counter = ManagedAtomic<Int>(0)
+        DispatchQueue.concurrentPerform(iterations: 10) { _ in
+            for _ in 0..<10000 {
+                HloggingDemo.debug(metadata: .string(value: ""), message: "人之初，性本善。性相近，习相远。苟不教，性乃迁。教之道，贵以专。昔孟母，择邻处。子不学，断机杼。窦燕山，有义方。教五子，名俱扬。养不教，父之过。教不严，师之惰。子不学，非所宜。幼不学，老何为。玉不琢，不成器。", source: nil)
+                counter.wrappingIncrement(ordering: .relaxed)
+            }
         }
+        let num = counter.load(ordering: .relaxed)
+        print("rust: \(num) logs total")
         let end = Date()
         let duration = end.timeIntervalSince(start)
         stdoutRustLabel.text = "rust: \(duration) s"
