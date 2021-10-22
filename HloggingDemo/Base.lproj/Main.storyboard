@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="euf-1e-CbL">
-                                <rect key="frame" x="41.5" y="260.5" width="331" height="185"/>
+                                <rect key="frame" x="41.5" y="225.5" width="331" height="255.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="QoZ-hY-WyR">
                                         <rect key="frame" x="0.0" y="0.0" width="331" height="67.5"/>
@@ -55,6 +55,20 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="ff8-1r-a9d">
+                                        <rect key="frame" x="0.0" y="235" width="331" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="file size:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkC-QY-Kvk">
+                                                <rect key="frame" x="0.0" y="0.0" width="331" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="GkC-QY-Kvk" firstAttribute="width" secondItem="ff8-1r-a9d" secondAttribute="width" id="DUz-C2-EyI"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="EFW-hh-CCe" firstAttribute="width" secondItem="euf-1e-CbL" secondAttribute="width" id="KaS-yP-Jll"/>
@@ -71,6 +85,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fileSizeLabel" destination="GkC-QY-Kvk" id="m9p-cv-w6k"/>
                         <outlet property="stdoutRustLabel" destination="EFW-hh-CCe" id="LbH-h8-cbc"/>
                         <outlet property="stdoutSwiftLabel" destination="gjx-yG-ufz" id="OLS-ve-g6W"/>
                     </connections>

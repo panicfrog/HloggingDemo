@@ -161,14 +161,14 @@ private protocol ViaFfi: Serializable {
 // Types conforming to `Primitive` pass themselves directly over the FFI.
 private protocol Primitive {}
 
-extension Primitive {
-    fileprivate typealias FfiType = Self
+private extension Primitive {
+    typealias FfiType = Self
 
-    fileprivate static func lift(_ v: Self) throws -> Self {
+    static func lift(_ v: Self) throws -> Self {
         return v
     }
 
-    fileprivate func lower() -> Self {
+    func lower() -> Self {
         return self
     }
 }
@@ -177,10 +177,10 @@ extension Primitive {
 // Use this for complex types where it's hard to write a custom lift/lower.
 private protocol ViaFfiUsingByteBuffer: Serializable {}
 
-extension ViaFfiUsingByteBuffer {
-    fileprivate typealias FfiType = RustBuffer
+private extension ViaFfiUsingByteBuffer {
+    typealias FfiType = RustBuffer
 
-    fileprivate static func lift(_ buf: RustBuffer) throws -> Self {
+    static func lift(_ buf: RustBuffer) throws -> Self {
         let reader = Reader(data: Data(rustBuffer: buf))
         let value = try Self.read(from: reader)
         if reader.hasRemaining() {
@@ -190,7 +190,7 @@ extension ViaFfiUsingByteBuffer {
         return value
     }
 
-    fileprivate func lower() -> RustBuffer {
+    func lower() -> RustBuffer {
         let writer = Writer()
         write(into: writer)
         return RustBuffer(bytes: writer.bytes)
@@ -312,14 +312,14 @@ extension Metadata: ViaFfiUsingByteBuffer, ViaFfi {
         let variant: Int32 = try buf.readInt()
         switch variant {
         case 1: return .string(
-            value: try String.read(from: buf)
-        )
+                value: try String.read(from: buf)
+            )
         case 2: return .array(
-            value: try [Metadata].read(from: buf)
-        )
+                value: try [Metadata].read(from: buf)
+            )
         case 3: return .map(
-            value: try [String: Metadata].read(from: buf)
-        )
+                value: try [String: Metadata].read(from: buf)
+            )
         default: throw UniffiInternalError.unexpectedEnumCase
         }
     }
@@ -407,11 +407,11 @@ extension HLoggingType: ViaFfiUsingByteBuffer, ViaFfi {
         switch variant {
         case 1: return .stdStream
         case 2: return .fileLogger(
-            directory: try String.read(from: buf)
-        )
+                directory: try String.read(from: buf)
+            )
         case 3: return .mmapLogger(
-            directory: try String.read(from: buf)
-        )
+                directory: try String.read(from: buf)
+            )
         default: throw UniffiInternalError.unexpectedEnumCase
         }
     }
@@ -489,12 +489,12 @@ extension WriteFileError: ViaFfiUsingByteBuffer, ViaFfi {
         let variant: Int32 = try buf.readInt()
         switch variant {
         case 1: return .FileError(
-            message: try String.read(from: buf)
-        )
+                message: try String.read(from: buf)
+            )
 
         case 2: return .WriteError(
-            message: try String.read(from: buf)
-        )
+                message: try String.read(from: buf)
+            )
 
         default: throw UniffiInternalError.unexpectedEnumCase
         }

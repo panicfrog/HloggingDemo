@@ -638,7 +638,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = E394H7ER8M;
+				DEVELOPMENT_TEAM = 8U33C62CLM;
 				INFOPLIST_FILE = HloggingDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -649,7 +649,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/hlogging/target/universal/debug",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yeyongping.HloggingDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yeyongping.HloggingDemoBenchmark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HloggingDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -666,7 +666,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E394H7ER8M;
+				DEVELOPMENT_TEAM = 8U33C62CLM;
 				INFOPLIST_FILE = HloggingDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -677,7 +677,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/hlogging/target/universal/release",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yeyongping.HloggingDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yeyongping.HloggingDemoBenchmark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HloggingDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

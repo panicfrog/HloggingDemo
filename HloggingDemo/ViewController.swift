@@ -13,9 +13,21 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var stdoutSwiftLabel: UILabel!
     @IBOutlet weak var stdoutRustLabel: UILabel!
+    @IBOutlet weak var fileSizeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var directory: String?
+        if case let .fileLogger(dir) = type {
+            directory = dir
+            
+        }
+        if case let .mmapLogger(dir) = type {
+            directory = dir
+        }
+        if let directory = directory {
+            showFileSize(with: directory)
+        }
     }
     
     func write(log: String) {
@@ -36,13 +48,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func swift(_ sender: Any) {
-        weiteLogPerformace()
+        weiteLogPerformance()
     }
     
-    private func weiteLogPerformace() {
+    private func weiteLogPerformance() {
         var filehandle: FileHandle?
         var directory: String? = .none
-        let start = Date()
+        let start = now()
         if case let .fileLogger(dir) = type {
             directory = dir
             
@@ -96,9 +108,11 @@ class ViewController: UIViewController {
         }
         let num = counter.load(ordering: .relaxed)
         print("swift: \(num) logs total")
-        let end = Date()
-        let duration = end.timeIntervalSince(start)
+        let duration = Double(now() - start) / 1000_000_000
         stdoutSwiftLabel.text = "swift: \(duration) s"
+        if let directory = directory {
+            showFileSize(with: directory)
+        }
     }
     
     private func writeLog(with writer: Writer, formatter: Formatter) {
@@ -215,7 +229,7 @@ class ViewController: UIViewController {
     // MARK: -
     
     @IBAction func rust(_ sender: Any) {
-        let start = Date()
+        let start = now()
         let counter = ManagedAtomic<Int>(0)
         DispatchQueue.concurrentPerform(iterations: 10) { _ in
             for _ in 0..<10000 {
@@ -225,9 +239,20 @@ class ViewController: UIViewController {
         }
         let num = counter.load(ordering: .relaxed)
         print("rust: \(num) logs total")
-        let end = Date()
-        let duration = end.timeIntervalSince(start)
+        let duration = Double(now() - start) / 1000_000_000
         stdoutRustLabel.text = "rust: \(duration) s"
+        
+        var directory: String?
+        if case let .fileLogger(dir) = type {
+            directory = dir
+            
+        }
+        if case let .mmapLogger(dir) = type {
+            directory = dir
+        }
+        if let directory = directory {
+            showFileSize(with: directory)
+        }
         
         //        let directory: String?
         //        if case let .fileLogger(dir) = type {
@@ -242,6 +267,22 @@ class ViewController: UIViewController {
         //            print(r.count)
         //        }
     }
+    
+    
+//    @IBAction func deleteAllLog(_ sender: Any) {
+//        if case let .fileLogger(dir) = type {
+//            let fm = FileManager.default
+//            let currentLog = getCurrentLogPath(from: dir)
+//            if fm.fileExists(atPath: currentLog) {
+//                do {
+//                    try fm.removeItem(atPath: currentLog)
+//                } catch {
+//                    print(error)
+//                }
+//            }
+//            showFileSize(with: dir)
+//        }
+//    }
     
     func getCurrentLogURL(form directory: String) -> URL {
         let data = Date()
@@ -258,5 +299,26 @@ class ViewController: UIViewController {
         let dateString = dateFormatter.string(from: data)
         return "\(directory)/\(dateString).log"
     }
+    
+    func showFileSize(with directory: String) {
+        let currentLog = getCurrentLogPath(from: directory)
+        let fm = FileManager.default
+        if fm.fileExists(atPath: currentLog) {
+            do {
+                let attr = try FileManager.default.attributesOfItem(atPath: currentLog)
+                let size = Double((attr[FileAttributeKey.size]  as! NSNumber).uint64Value)/1024
+                print("file size: \(size)")
+                fileSizeLabel.text = "file size: \(size) KB"
+            } catch {
+                print(error)
+            }
+        } else {
+            fileSizeLabel.text = "file size: 0 KB"
+        }
+    }
 }
 
+@inline(__always)
+func now() -> UInt64 {
+    DispatchTime.now().uptimeNanoseconds
+}
