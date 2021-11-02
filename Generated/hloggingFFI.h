@@ -28,6 +28,8 @@ typedef struct RustBuffer
     uint8_t *_Nullable data;
 } RustBuffer;
 
+typedef RustBuffer (*ForeignCallback)(uint64_t, int32_t, RustBuffer);
+
 typedef struct ForeignBytes
 {
     int32_t len;
@@ -44,51 +46,59 @@ typedef struct RustCallStatus {
 // ⚠️ increment the version suffix in all instances of UNIFFI_SHARED_HEADER_V3 in this file.           ⚠️
 #endif // def UNIFFI_SHARED_H
 
-void hlogging_d3ee_write_file(
+void ffi_hlogging_ab46_FilterPlugin_init_callback(
+      ForeignCallback  _Nonnull callback_stub,
+    RustCallStatus *_Nonnull out_status
+    );
+void ffi_hlogging_ab46_HandlerPlugin_init_callback(
+      ForeignCallback  _Nonnull callback_stub,
+    RustCallStatus *_Nonnull out_status
+    );
+void hlogging_ab46_write_file(
       RustBuffer filename,RustBuffer message,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_d3ee_configure(
+void hlogging_ab46_configure(
       RustBuffer label,RustBuffer level,RustBuffer logger_type,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_d3ee_debug(
+void hlogging_ab46_debug(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_d3ee_info(
+void hlogging_ab46_info(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_d3ee_notice(
+void hlogging_ab46_notice(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_d3ee_warring(
+void hlogging_ab46_warring(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_d3ee_error(
+void hlogging_ab46_error(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-void hlogging_d3ee_critical(
+void hlogging_ab46_critical(
       RustBuffer metadata,RustBuffer message,RustBuffer source,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_d3ee_rustbuffer_alloc(
+RustBuffer ffi_hlogging_ab46_rustbuffer_alloc(
       int32_t size,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_d3ee_rustbuffer_from_bytes(
+RustBuffer ffi_hlogging_ab46_rustbuffer_from_bytes(
       ForeignBytes bytes,
     RustCallStatus *_Nonnull out_status
     );
-void ffi_hlogging_d3ee_rustbuffer_free(
+void ffi_hlogging_ab46_rustbuffer_free(
       RustBuffer buf,
     RustCallStatus *_Nonnull out_status
     );
-RustBuffer ffi_hlogging_d3ee_rustbuffer_reserve(
+RustBuffer ffi_hlogging_ab46_rustbuffer_reserve(
       RustBuffer buf,int32_t additional,
     RustCallStatus *_Nonnull out_status
     );
